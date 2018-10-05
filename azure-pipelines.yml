@@ -10,5 +10,5 @@ variables:
   imageName: 'kossmonautes-web:$(build.buildId)'
 
 steps:
-- script: docker build -f frontend/kossmonautes-web/Dockerfile -t $(imageName) .
+- script: docker build -f frontend/kossmonautes-web/Dockerfile -t $(imageName) frontend/kossmonautes-web/.
   displayName: 'docker build'
