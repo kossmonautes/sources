@@ -3,7 +3,7 @@
 # dockerPassword = password to connect to dockerHub with the dockerId
 variables:
     webImageName: 'kossmonautes-web:$(build.buildId)'
-    apiImageName: 'kossmonautes-web:$(build.buildId)'
+    apiImageName: 'kossmonautes-api:$(build.buildId)'
     dockerbuildCommand: 'docker build -f $(baseFolder)/Dockerfile -t $(dockerId)/$(imageName) $(baseFolder)/.'
     
 jobs:
@@ -34,6 +34,7 @@ jobs:
     vmImage: 'Ubuntu 16.04'
   steps:
   - script: |
+      echo '$(webImageName) - $(apiImageName)'
       docker login -u $(dockerId) -p $(dockerPassword)
       docker push $(dockerId)/$(webImageName)
       docker push $(dockerId)/$(apiImageName)
