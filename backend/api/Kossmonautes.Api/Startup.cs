@@ -34,6 +34,7 @@ namespace Kossmonautes.Api
                     string result = JSON.Serialize(
                         Fakes.Peoples()
                     );
+                    context.Response.Headers["Content-type"] = "application/json";
                     await context.Response.WriteAsync(result);
                 }
 
