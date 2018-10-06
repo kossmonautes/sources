@@ -15,6 +15,9 @@ jobs:
     vmImage: 'Ubuntu 16.04'
   steps:
   - script: $(dockerbuildCommand)
+  - script: |
+      docker login -u $(dockerId) -p $(dockerPassword)
+      docker push $(dockerId)/$(imageName)
 
 - job: kossmonautes_api_build
   variables:
@@ -24,17 +27,6 @@ jobs:
       vmImage: 'Ubuntu 16.04'
   steps:
   - script: $(dockerbuildCommand)
-  
-- job: push_all_images
-  dependsOn:
-    - kossmonautes_web_build
-    - kossmonautes_api_build
-  condition: succeeded()
-  pool:
-    vmImage: 'Ubuntu 16.04'
-  steps:
   - script: |
-      echo '$(webImageName) - $(apiImageName)'
       docker login -u $(dockerId) -p $(dockerPassword)
-      docker push $(dockerId)/$(webImageName)
-      docker push $(dockerId)/$(apiImageName)
+      docker push $(dockerId)/$(imageName)
