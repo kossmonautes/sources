@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Jil;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,7 +29,14 @@ namespace Kossmonautes.Api
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                using (var output = new StringWriter())
+                {
+                    string result = JSON.Serialize(
+                        Fakes.Peoples()
+                    );
+                    await context.Response.WriteAsync(result);
+                }
+
             });
         }
     }
