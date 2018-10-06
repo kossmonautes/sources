@@ -12,7 +12,7 @@ jobs:
     imageName: $(webImageName)
     baseFolder: 'frontend/kossmonautes-web'
   pool:
-    vmImage: $(jobsVmImage)
+    vmImage: '$(jobsVmImage)'
   steps:
   - script: $(dockerbuildCommand)
 
@@ -21,7 +21,7 @@ jobs:
     imageName: $(apiImageName)
     baseFolder: 'backend/api/Kossmonautes.Api'
   pool:
-      vmImage: $(jobsVmImage)
+      vmImage: '$(jobsVmImage)'
   steps:
   - script: $(dockerbuildCommand)
   
@@ -31,7 +31,7 @@ jobs:
     - kossmonautes_api_build
   condition: succeeded()
   pool:
-    vmImage: $(jobsVmImage)
+    vmImage: '$(jobsVmImage)'
   steps:
   - script: |
       docker login -u $(dockerId) -p $(dockerPassword)
