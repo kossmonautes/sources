@@ -5,7 +5,7 @@ variables:
     webImageName: 'kossmonautes-web:$(build.buildId)'
     apiImageName: 'kossmonautes-web:$(build.buildId)'
     jobsVmImage: 'Ubuntu 16.04'
-    dockerbuildCommand: docker build -f $(baseFolder)/Dockerfile -t $(dockerId)/$(imageName) $(baseFolder)/.
+    dockerbuildCommand: 'docker build -f $(baseFolder)/Dockerfile -t $(dockerId)/$(imageName) $(baseFolder)/.'
     
 jobs:
 - job: kossmonautes_web_build
