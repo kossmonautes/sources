@@ -5,14 +5,14 @@ variables:
     webImageName: 'kossmonautes-web:$(build.buildId)'
     apiImageName: 'kossmonautes-web:$(build.buildId)'
     dockerbuildCommand: 'docker build -f $(baseFolder)/Dockerfile -t $(dockerId)/$(imageName) $(baseFolder)/.'
-    jobsVmImage: 'Ubuntu 16.04'
+    
 jobs:
 - job: kossmonautes_web_build
   variables:
     imageName: $(webImageName)
     baseFolder: 'frontend/kossmonautes-web'
   pool:
-    vmImage: '$(jobsVmImage)'
+    vmImage: 'Ubuntu 16.04'
   steps:
   - script: $(dockerbuildCommand)
 
@@ -21,7 +21,7 @@ jobs:
     imageName: $(apiImageName)
     baseFolder: 'backend/api/Kossmonautes.Api'
   pool:
-      vmImage: '$(jobsVmImage)'
+      vmImage: 'Ubuntu 16.04'
   steps:
   - script: $(dockerbuildCommand)
   
@@ -31,7 +31,7 @@ jobs:
     - kossmonautes_api_build
   condition: succeeded()
   pool:
-    vmImage: '$(jobsVmImage)'
+    vmImage: 'Ubuntu 16.04'
   steps:
   - script: |
       docker login -u $(dockerId) -p $(dockerPassword)
