@@ -2,7 +2,7 @@
 # dockerId = dockerId where the image is published
 # dockerPassword = password to connect to dockerHub with the dockerId
 jobs:
-- job: kossmonautes-web
+- job: kossmonautes_web
   variables:
     imageName: 'kossmonautes-web:$(build.buildId)'
     baseFolder: 'frontend/kossmonautes-web'
@@ -15,7 +15,7 @@ jobs:
       docker login -u $(dockerId) -p $(dockerPassword)
       docker push $(dockerId)/$(imageName)
 
-- job:
+- job: kossmonautes_api
   variables:
     imageName: 'kossmonautes-api:$(build.buildId)'
     baseFolder: 'backend/api/Kossmonautes.Api'
