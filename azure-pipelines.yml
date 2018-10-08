@@ -1,16 +1,32 @@
 # variables in the pipeline
 # dockerId = dockerId where the image is published
 # dockerPassword = password to connect to dockerHub with the dockerId
-
-pool:
-  vmImage: 'Ubuntu 16.04'
-
 variables:
-  imageName: 'kossmonautes-web:$(build.buildId)'
+    webImageName: 'kossmonautes-web:$(build.buildId)'
+    apiImageName: 'kossmonautes-api:$(build.buildId)'
+    dockerbuildCommand: 'docker build -f $(baseFolder)/Dockerfile -t $(dockerId)/$(imageName) $(baseFolder)/.'
+    
+jobs:
+- job: kossmonautes_web_build
+  variables:
+    imageName: $(webImageName)
+    baseFolder: 'frontend/kossmonautes-web'
+  pool:
+    vmImage: 'Ubuntu 16.04'
+  steps:
+  - script: $(dockerbuildCommand)
+  - script: |
+      docker login -u $(dockerId) -p $(dockerPassword)
+      docker push $(dockerId)/$(imageName)
 
-steps:
-- script: docker build -f frontend/kossmonautes-web/Dockerfile -t $(dockerId)/$(imageName) frontend/kossmonautes-web/.
-  displayName: 'docker build'
-- script: |
-    docker login -u $(dockerId) -p $(dockerPassword)
-    docker push $(dockerId)/$(imageName)
+- job: kossmonautes_api_build
+  variables:
+    imageName: $(apiImageName)
+    baseFolder: 'backend/api/Kossmonautes.Api'
+  pool:
+      vmImage: 'Ubuntu 16.04'
+  steps:
+  - script: $(dockerbuildCommand)
+  - script: |
+      docker login -u $(dockerId) -p $(dockerPassword)
+      docker push $(dockerId)/$(imageName)
