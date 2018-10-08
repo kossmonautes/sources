@@ -5,6 +5,9 @@
 
 - installed .net core sdk 2.1.403
 
+see : http://www.talkingdotnet.com/how-to-scaffold-identity-ui-in-asp-net-core-2-1/ 
+to see how to add scaffolded views to the project
+
 
 # Identity db
 
