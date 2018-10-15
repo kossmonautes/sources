@@ -1,4 +1,7 @@
-console.log('config', Vue.config)
+import {linkem} from './model.js'
+
+linkem();
+
 
 new Vue({ 
     el: '#app',

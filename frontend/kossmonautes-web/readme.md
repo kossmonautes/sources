@@ -1,4 +1,4 @@
-# I want to vue
+# I want to Vue the code
 
 ## prerequisites
 
@@ -15,6 +15,32 @@
 > launch debug in Vs code
 
 ## Follow up
+
+### Seconde round
+
+stared by reading (with an eagle eye) the code read the code (10947 lines, this will take a while)
+
+339: available assets:
+- components
+- directives
+- filter
+
+345: list of lifecycle hooks
+361: declare a config var
+526: seems to support server side rendering
+
+xxx: Watcher seem to be a global variable
+4710: the Vue function
+5010 : built in components : KeepAlive => what is that?
+9833: optimize
+10139: generate element
+
+in fact Vue is a constructor, we pass it options and it does the job to render in the dom.
+line 4627: the component starts it's handling to be mounted in the dom
+
+
+
+### First round
 
 line 4710 : we call the Vue function with an option object:
 function Vue (options) { //line 4710

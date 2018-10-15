@@ -11,7 +11,7 @@
 
 /*  */
 
-var emptyObject = Object.freeze({});
+var emptyObject = Object.freeze({}); var klog = (s) => console.log(s);
 
 // these helpers produces better vm code in JS engines due to their
 // explicitness and function inlining
@@ -340,7 +340,7 @@ var ASSET_TYPES = [
   'component',
   'directive',
   'filter'
-];
+];klog('declaring assets');
 
 var LIFECYCLE_HOOKS = [
   'beforeCreate',
@@ -354,7 +354,7 @@ var LIFECYCLE_HOOKS = [
   'activated',
   'deactivated',
   'errorCaptured'
-];
+];klog('declaring Lifecycles hooks');
 
 /*  */
 
@@ -671,7 +671,7 @@ var formatComponentName = (noop);
 /*  */
 
 
-var uid = 0;
+var uid = 0; klog('declare a uid');
 
 /**
  * A dep is an observable that can have multiple
@@ -5057,7 +5057,7 @@ function initGlobalAPI (Vue) {
   initAssetRegisters(Vue);
 }
 
-initGlobalAPI(Vue);
+initGlobalAPI(Vue);klog('init global api');
 
 Object.defineProperty(Vue.prototype, '$isServer', {
   get: isServerRendering
@@ -10940,7 +10940,7 @@ function getOuterHTML (el) {
   }
 }
 
-Vue.compile = compileToFunctions;
+Vue.compile = compileToFunctions;klog('returning Vue constructor');
 
 return Vue;
 
