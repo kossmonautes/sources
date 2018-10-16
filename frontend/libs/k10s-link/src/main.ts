@@ -1,4 +1,4 @@
-import { Greeter } from './greeter';
+import { Link } from './link';
 
-const g = new Greeter('Juri');
-g.greet();
+const l = new Link();
+l.fetch();
