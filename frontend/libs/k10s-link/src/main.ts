@@ -1,4 +1,4 @@
 import { Link } from './link';
 
 const l = new Link();
-l.fetch();
+l.fetch('/bob/name');

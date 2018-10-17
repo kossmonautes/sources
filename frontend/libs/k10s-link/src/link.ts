@@ -1,10 +1,13 @@
-
+import axios, { AxiosRequestConfig } from 'axios';
 export class Link {
 
-    constructor() {
-    }
+    baseUrl = 'http://localhost:9001';
 
-    fetch(): void {
-        console.log(`fetching`);
+    constructor() {}
+
+    fetch(path:String): void {
+       
+        axios.get(this.baseUrl + path)
+        .then(r => console.log(r));
     }
 }
